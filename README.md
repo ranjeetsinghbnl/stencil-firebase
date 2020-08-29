@@ -116,7 +116,7 @@ src -> components ->
 ```
 
 ### Styling 💀
-I have used `scss` for styling components. Ths boilerplate have a basic design i.e it focus more on configuring and using firebase in stencil web app along with stencil store. You can customize the looks as per our needs.
+I have used `scss` for styling components. Ths boilerplate have a basic design i.e it focus more on configuring and using firebase in stencil web app along with stencil store. You can customize the looks as per your needs.
 
 ## Firebase Error Messages
 I have shown the error message directly without modifying them returned by the API. You can customize them by modifying the `FirebaseAuthService` code
