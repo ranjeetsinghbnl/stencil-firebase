@@ -1,0 +1,28 @@
+/* The alert message box */
+.app-alert {
+  padding: 10px;
+  background-color: #f44336;
+  /* Red */
+  color: white;
+  margin-bottom: 6px;
+  margin-top: 6px;
+  border: 1px solid #dc3b2f;
+  border-radius: 3px;
+  text-align: center;
+
+  /* The close button */
+  .app-close-btn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      color: black;
+    }
+  }
+}

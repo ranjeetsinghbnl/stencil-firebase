@@ -1,0 +1,190 @@
+$contW: 900px;
+$imgW: 260px;
+$formW: $contW - $imgW;
+$switchAT: 1.2s;
+
+$inputW: 260px;
+$btnH: 36px;
+
+$diffRatio: ($contW - $imgW) / $contW;
+
+@mixin registerUpActive {
+  .cont.s--register & {
+    @content;
+  }
+}
+
+/*
+  Global App CSS
+  ----------------------
+  Use this file for styles that should be applied to all components.
+  For example, "font-family" within the "body" selector is a CSS property
+  most apps will want applied to all components.
+
+  Any global CSS variables should also be applied here.
+*/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  background: #FFF;
+  font-family: "Comic Sans MS",
+    cursive,
+    sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+main {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 960px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+header {
+  background: #5851ff;
+  color: white;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+
+  h1 {
+    color: #fff;
+  }
+
+  a {
+    color: #fff;
+  }
+
+  .nav-user {
+    font-size: 14px;
+  }
+}
+
+h1 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #908f8f;
+  padding: 0 12px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #343434;
+}
+
+input,
+button {
+  border: none;
+  outline: none;
+  background: none;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+}
+
+ol,
+ul {
+  margin-left: 35px;
+
+  li {
+    a {
+      color: #343434;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.wd-50 {
+  width: 50%;
+  display: block;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.pdr-5 {
+  padding-right: 10px;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+  width: $inputW;
+  height: $btnH;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 15px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, .1),
+    0 3px 6px rgba(0, 0, 0, .08);
+  outline: 0;
+  letter-spacing: .04em;
+  transition: all .15s ease;
+  text-transform: uppercase;
+
+  &:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .1);
+    transform: translateY(1px);
+  }
+}
+
+h2 {
+  width: 100%;
+  font-size: 26px;
+  text-align: center;
+}
+
+label {
+  display: block;
+  width: $inputW;
+  margin: 25px auto 0;
+  text-align: center;
+
+  span {
+    font-size: 12px;
+    color: #cfcfcf;
+    text-transform: uppercase;
+  }
+
+  span.text-danger {
+    text-transform: none;
+    color: #f97130;
+    text-align: left;
+  }
+}
+
+input {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  padding-bottom: 5px;
+  font-size: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: #3c3c3c;
+}

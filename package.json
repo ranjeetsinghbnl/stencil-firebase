@@ -1,0 +1,40 @@
+{
+  "name": "stencil-firebase",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Welcome to the Stencil + Firebase starter App. You can use this starter to build entire apps all with web components using Stencil + Firebase",
+  "scripts": {
+    "build": "stencil build",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll",
+    "generate": "stencil generate",
+    "lint": "eslint src/**/*{.ts,.tsx}"
+  },
+  "devDependencies": {
+    "@stencil/core": "^1.17.3",
+    "@stencil/eslint-plugin": "^0.3.1",
+    "@stencil/router": "^1.0.1",
+    "@stencil/sass": "^1.3.2",
+    "@stencil/store": "^1.3.0",
+    "@typescript-eslint/eslint-plugin": "^3.10.1",
+    "@typescript-eslint/parser": "^3.10.1",
+    "eslint": "^7.7.0",
+    "eslint-plugin-react": "^7.20.6"
+  },
+  "license": "MIT",
+  "author": "Ranjeet Singh",
+  "dependencies": {
+    "@types/jest": "^26.0.10",
+    "firebase": "^7.19.1",
+    "puppeteer": "^5.2.1"
+  },
+  "keywords": [
+    "web components",
+    "components",
+    "stencil",
+    "firebase",
+    "firebase stencil",
+    "stencil store"
+  ]
+}

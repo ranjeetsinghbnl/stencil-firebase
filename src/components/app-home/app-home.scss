@@ -1,0 +1,15 @@
+span.user-name {
+  font-size: 16px;
+}
+
+a.profile-links {
+  text-decoration: none;
+  font-size: 14px;
+  color: #343434;
+  padding-top: 40px;
+  display: block;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
