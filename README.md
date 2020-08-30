@@ -1,6 +1,7 @@
 # Stencil + Firebase 👋
 This is a boilerplate for creating a webapp using [Stencil](https://github.com/ionic-team/stencil) + [Firebase](https://firebase.google.com) + [Stencil Store](https://stenciljs.com/docs/stencil-store). 
 
+<img src="https://i.gyazo.com/483076401df66d10a9a352adbfe85ef9.png" alt="Login Page">
 
 ## Features 📋
 
