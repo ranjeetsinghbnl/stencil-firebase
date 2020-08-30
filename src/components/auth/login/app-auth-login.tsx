@@ -28,8 +28,6 @@ export class AppLogin {
 
   /**
   * history instance.
-  * @name history
-  * @type {Object}
   */
   @Prop() history: RouterHistory;
 

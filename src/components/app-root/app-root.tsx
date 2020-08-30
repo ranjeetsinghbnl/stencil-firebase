@@ -46,12 +46,10 @@ export class AppRoot {
   * @name authObj
   * @type {Object}
   */
-  public authObj = AuthService;
+  private authObj = AuthService;
 
   /**
   * history instance.
-  * @name history
-  * @type {Object}
   */
   @Prop() history: RouterHistory;
 
@@ -70,10 +68,10 @@ export class AppRoot {
   * @returns {void}
   */
   render() {
-    if (AppState.appInit) {
+    if (AppState.appInit === true) {
       return (<div>Loading...</div>);
     }
-    if (AppState.appInitError) {
+    if (AppState.appInitError != '') {
       return (<app-flash-message closable={false}>{AppState.appInitError}</app-flash-message>);
     }
     const titleSuffix = ` | ${appConfig.pageTitlePrefix}`

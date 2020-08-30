@@ -21,33 +21,25 @@ export class AppAuthProfile {
   * @name authObj
   * @type {Object}
   */
-  public authObj = AuthService;
+  private authObj = AuthService;
 
   /**
   * Register form inputs and validations
-  * @name formControls
-  * @type {Object}
   */
   @State() formControls = getFormValidations('updateProfile', { name: AppState.user ? AppState.user.displayName : null });
 
   /**
   * Form submission state
-  * @name submitted
-  * @type {boolean}
   */
   @State() submitted = false;
 
   /**
   * Form error state
-  * @name loginError
-  * @type {string}
   */
   @State() formError: string = '';
 
   /**
   * Form loading state
-  * @name updateLoader
-  * @type {boolean}
   */
   @State() updateLoader: boolean = false;
 

@@ -27,36 +27,26 @@ export class AppAuthRegister {
 
   /**
   * history instance.
-  * @name history
-  * @type {Object}
   */
   @Prop() history: RouterHistory;
 
   /**
   * Register form inputs and validations
-  * @name formControls
-  * @type {Object}
   */
   @State() formControls = getFormValidations('register');
 
   /**
   * Form submission state
-  * @name submitted
-  * @type {boolean}
   */
   @State() submitted = false;
 
   /**
   * Form loading state
-  * @name formLoader
-  * @type {boolean}
   */
   @State() formLoader = false;
 
   /**
   * Form error state
-  * @name registerError
-  * @type {string}
   */
   @State() registerError: string = '';
 

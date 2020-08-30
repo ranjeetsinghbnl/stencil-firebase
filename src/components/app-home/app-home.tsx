@@ -27,7 +27,7 @@ export class AppHome {
         <h3>Hi <span class="user-name">{AppState.user ? AppState.user.displayName : null}</span>,</h3><br />
         <h3>Welcome to the {appConfig.name} dashboard.</h3><br />
         <h4>This app demonstrate Login, Register, logout features using Firebase + Stencil + Stencil Store as state management tool.</h4>
-        <h4>You can read more about them</h4>
+        <h4>You can read more about the technologies used here</h4>
         <ol>
           <li><a href="https://github.com/ionic-team/stencil" target="_blank">Stencil</a></li>
           <li><a href="https://stenciljs.com/docs/stencil-store" target="_blank">Stencil Store</a></li>

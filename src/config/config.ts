@@ -5,13 +5,13 @@
  */
 
 const firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  databaseURL: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: ""
+  apiKey: "AIzaSyAvpYHI5KxYtwwNrSvrYsU3VyFETJOu0Cc",
+  authDomain: "stencil-auth.firebaseapp.com",
+  databaseURL: "https://stencil-auth.firebaseio.com",
+  projectId: "stencil-auth",
+  storageBucket: "stencil-auth.appspot.com",
+  messagingSenderId: "51186892185",
+  appId: "1:51186892185:web:a8feecd8dd4c154cebe708"
 };
 
 const httpCode = {

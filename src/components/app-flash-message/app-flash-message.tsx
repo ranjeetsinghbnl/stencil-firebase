@@ -24,10 +24,8 @@ export class AppFlashMessage {
   @Prop() closable: boolean = true;
 
   /**
-  * Custom class name
+  * Show/hide alert message
   */
-  @Prop({ mutable: true }) localClass: string = '';
-
   @Prop({ mutable: true, reflect: true }) show = true;
 
   @Watch('show')
@@ -84,7 +82,7 @@ export class AppFlashMessage {
           'hidden': this.show == false
         }}
         role="alert"
-        aria-hidden={this.localClass == 'hidden' ? true : false}
+        aria-hidden={this.show == false ? true : false}
       >
         {this.closable && (<span class="app-close-btn" onClick={() => this.hideMsg()}>&times;</span>)}
         {this.show == false ? 1 : 2}

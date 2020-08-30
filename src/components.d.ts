@@ -10,8 +10,6 @@ export namespace Components {
     interface AppAuthLogin {
         /**
           * history instance.
-          * @name history
-          * @type {Object}
          */
         "history": RouterHistory;
     }
@@ -20,8 +18,6 @@ export namespace Components {
     interface AppAuthRegister {
         /**
           * history instance.
-          * @name history
-          * @type {Object}
          */
         "history": RouterHistory;
     }
@@ -31,9 +27,8 @@ export namespace Components {
          */
         "closable": boolean;
         /**
-          * Custom class name
+          * Show/hide alert message
          */
-        "localClass": string;
         "show": boolean;
         /**
           * Message type
@@ -47,8 +42,6 @@ export namespace Components {
     interface AppRoot {
         /**
           * history instance.
-          * @name history
-          * @type {Object}
          */
         "history": RouterHistory;
     }
@@ -110,8 +103,6 @@ declare namespace LocalJSX {
     interface AppAuthLogin {
         /**
           * history instance.
-          * @name history
-          * @type {Object}
          */
         "history"?: RouterHistory;
     }
@@ -120,8 +111,6 @@ declare namespace LocalJSX {
     interface AppAuthRegister {
         /**
           * history instance.
-          * @name history
-          * @type {Object}
          */
         "history"?: RouterHistory;
     }
@@ -131,9 +120,8 @@ declare namespace LocalJSX {
          */
         "closable"?: boolean;
         /**
-          * Custom class name
+          * Show/hide alert message
          */
-        "localClass"?: string;
         "show"?: boolean;
         /**
           * Message type
@@ -147,8 +135,6 @@ declare namespace LocalJSX {
     interface AppRoot {
         /**
           * history instance.
-          * @name history
-          * @type {Object}
          */
         "history"?: RouterHistory;
     }
