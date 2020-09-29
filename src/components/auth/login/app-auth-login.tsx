@@ -4,18 +4,18 @@
  * @component AppLogin
  */
 
-import { Component, h, Prop, State } from '@stencil/core';
+import { Component, h, Prop, State, getAssetPath } from '@stencil/core';
 import { RouterHistory } from '@stencil/router';
-import { AppState } from "../../../store/app.store";
 import { AuthService } from "../../../services/auth.service";
 import { httpCode, appConfig } from '../../../config/config';
-import { getFormValidations } from '../../../util/util';
+import { errorClass, getFormValidations, inputClass } from '../../../util/util';
 import { LoginRegisterSidebar } from '../../common/login-register-sidebar';
+import { appUrl } from '../../../util/app-url';
 
 @Component({
   tag: 'app-auth-login',
   styleUrl: 'app-auth-login.scss',
-
+  assetsDirs: ['assets']
 })
 export class AppLogin {
 
@@ -104,10 +104,11 @@ export class AppLogin {
       const loginRes = await this.authObj.login({ email: this.formControls.email.value, password: this.formControls.password.value });
       if (loginRes.status == httpCode.success) {
         this.formLoader = false;
-        this.history.push(`/`, {});
+        this.history.push(appUrl.root, {});
       } else {
         this.formLoader = false;
         this.loginError = loginRes.message;
+        this.formControls.password.value = null;
       }
     }
   }
@@ -118,49 +119,81 @@ export class AppLogin {
   * @returns {void}
   */
   render() {
-    if (AppState.isAuthenticated) {
-      return <stencil-router-redirect url="/" />
-    }
     return (
-      <div class="cont">
+      <div class="flex flex-col overflow-y-auto md:flex-row">
         <stencil-route-title pageTitle={appConfig.pageTitle.login} />
-        <div class="app-form register-in">
-          <h2>Welcome back</h2>
-          {this.loginError && <app-flash-message>{this.loginError}</app-flash-message>}
-          <form onSubmit={e => this.handleLogin(e)} novalidate>
-            <label>
-              <span>Email</span>
-              <input
-                type="email"
-                name="email"
-                value={this.formControls.email.value}
-                onInput={(ev: any) => this.changeFormValue("email", ev.target.value)}
-              />
-              {
-                (!this.formControls.email.isValid &&
-                  this.submitted === true) &&
-                <span class="text-danger">Please enter your email</span>
-              }
-            </label>
-            <label>
-              <span>Password</span>
-              <input
-                type="password"
-                name="password"
-                value={this.formControls.password.value}
-                onInput={(ev: any) => this.changeFormValue("password", ev.target.value)}
-              />
-              {
-                (!this.formControls.password.isValid &&
-                  this.submitted === true) &&
-                <span class="text-danger">Please enter your password</span>
-              }
-            </label>
-            {/* <p class="forgot-pass">Forgot password?</p> */}
-            <button type="submit" class="submit-btn" disabled={this.formLoader}>{this.formLoader ? appConfig.loadingBtnTxt : 'Login'}</button>
-          </form>
+        <div class="h-32 md:h-auto md:w-1/2">
+          <img
+            aria-hidden="true"
+            class="object-cover w-full h-full dark:hidden"
+            src={getAssetPath('./assets/login-office.jpeg')}
+            alt="Office"
+          />
+          <img
+            aria-hidden="true"
+            class="hidden object-cover w-full h-full dark:block"
+            src={getAssetPath('./assets/login-office-dark.jpeg')}
+            alt="Office"
+          />
         </div>
-        <LoginRegisterSidebar type="register"></LoginRegisterSidebar>
+        <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+          <div class="w-full">
+            <h1
+              class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200"
+            >
+              {appConfig.pageTitle.login}
+            </h1>
+            <form onSubmit={e => this.handleLogin(e)} novalidate>
+              <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Email</span>
+                <input
+                  class={`${inputClass} ${(!this.formControls.email.isValid && this.submitted === true) ? errorClass : ''}`}
+                  placeholder="name@email.com"
+                  type="email"
+                  name="email"
+                  min={3}
+                  max={50}
+                  value={this.formControls.email.value}
+                  onInput={(ev: any) => this.changeFormValue("email", ev.target.value)}
+                  required={true}
+                />
+                {
+                  (!this.formControls.email.isValid && this.submitted === true) &&
+                  <span class="text-xs text-red-600 dark:text-red-400">
+                    Please enter your email
+                  </span>
+                }
+              </label>
+              <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Password</span>
+                <input
+                  class={`${inputClass} ${(!this.formControls.password.isValid && this.submitted === true) ? errorClass : ''}`}
+                  placeholder="***************"
+                  type="password"
+                  name="password"
+                  value={this.formControls.password.value}
+                  onInput={(ev: any) => this.changeFormValue("password", ev.target.value)}
+                  required={true}
+                />
+                {
+                  (!this.formControls.password.isValid && this.submitted === true) &&
+                  <span class="text-xs text-red-600 dark:text-red-400">
+                    Please enter your password
+                  </span>
+                }
+              </label>
+              {this.loginError && <app-flash-message type="error">{this.loginError}</app-flash-message>}
+              <button
+                class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                type="submit"
+                disabled={this.formLoader}
+              >
+                {this.formLoader ? appConfig.loadingBtnTxt : 'Log in'}
+              </button>
+            </form>
+            <LoginRegisterSidebar type="login"></LoginRegisterSidebar>
+          </div>
+        </div>
       </div>
     );
   }

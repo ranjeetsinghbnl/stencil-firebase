@@ -1,3 +1,9 @@
+/**
+ *  @fileOverview Application store
+ *
+ *  @author  Ranjeet Singh
+ */
+
 import { createStore } from '@stencil/store';
 const store = createStore({
     user: undefined,
@@ -5,7 +11,9 @@ const store = createStore({
     appInitError: '',
     appInit: false,
     registerLoader: false,
-    loginLoader: false
+    loginLoader: false,
+    activeTheme: 'light',
+    showSidebar: false
 });
 
 store.onChange('isAuthenticated', (value) => {
@@ -19,6 +27,12 @@ store.onChange('appInitError', (value) => {
 });
 store.onChange('appInit', (value) => {
     AppState.appInit = value;
+});
+store.onChange('activeTheme', (value: 'light' | 'dark' = 'light') => {
+    AppState.activeTheme = value;
+});
+store.onChange('showSidebar', (value: boolean = false) => {
+    AppState.showSidebar = value;
 });
 
 export const AppState = store.state;

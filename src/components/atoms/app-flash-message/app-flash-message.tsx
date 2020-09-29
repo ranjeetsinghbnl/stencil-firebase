@@ -16,17 +16,17 @@ export class AppFlashMessage {
   /**
   * Message type
   */
-  @Prop() type: string = '';
+  @Prop({ reflect: true }) type: string = '';
 
   /** 
    * alert closable. 
   */
-  @Prop() closable: boolean = true;
+  @Prop({ reflect: true }) closable: boolean = true;
 
   /**
   * Show/hide alert message
   */
-  @Prop({ mutable: true, reflect: true }) show = true;
+  @Prop({ mutable: true, reflect: true }) show: boolean = true;
 
   @Watch('show')
   handleShowChange() {
@@ -79,13 +79,15 @@ export class AppFlashMessage {
         class={{
           'app-alert': true,
           'success': this.type === 'success',
-          'hidden': this.show == false
+          'error': this.type === 'error',
+          'hidden': !this.show,
+          'text-sm': true,
+          'dark:text-gray-300': true
         }}
         role="alert"
-        aria-hidden={this.show == false ? true : false}
+        aria-hidden={this.show ? "false" : "true"}
       >
         {this.closable && (<span class="app-close-btn" onClick={() => this.hideMsg()}>&times;</span>)}
-        {this.show == false ? 1 : 2}
         <slot></slot>
       </div>
     );

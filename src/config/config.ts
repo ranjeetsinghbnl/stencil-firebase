@@ -25,7 +25,7 @@ const appConfig = {
   pageTitlePrefix: appName,
   pageTitle: {
     login: 'Login',
-    register: 'Register',
+    register: 'Create account',
     dashboard: 'Dashboard',
     profile: 'Profile',
     password: 'Update Password'

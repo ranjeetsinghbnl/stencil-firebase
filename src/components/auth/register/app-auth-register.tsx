@@ -4,17 +4,18 @@
  * @component AppAuthRegister
  */
 
-import { Component, State, h, Prop } from '@stencil/core';
+import { Component, State, h, Prop, getAssetPath } from '@stencil/core';
 import { RouterHistory } from '@stencil/router';
 import { AuthService } from "../../../services/auth.service";
-import { AppState } from '../../../store/app.store';
 import { httpCode, appConfig } from '../../../config/config';
-import { getFormValidations } from '../../../util/util';
+import { errorClass, getFormValidations, inputClass } from '../../../util/util';
 import { LoginRegisterSidebar } from '../../common/login-register-sidebar';
+import { appUrl } from '../../../util/app-url';
 
 @Component({
   tag: 'app-auth-register',
-  styleUrl: 'app-auth-register.scss'
+  styleUrl: 'app-auth-register.scss',
+  assetsDirs: ['assets']
 })
 export class AppAuthRegister {
 
@@ -95,7 +96,7 @@ export class AppAuthRegister {
       const registerRes = await this.authObj.register({ email: this.formControls.email.value, password: this.formControls.password.value });
       if (registerRes.status == httpCode.success) {
         await this.authObj.updateProfile(this.formControls.name.value);
-        this.history.push(`/`, {});
+        this.history.push(appUrl.root, {});
       } else {
         this.registerError = registerRes.message;
         this.formLoader = false;
@@ -110,62 +111,128 @@ export class AppAuthRegister {
   * @returns {void}
   */
   render() {
-    if (AppState.isAuthenticated) {
-      return <stencil-router-redirect url="/" />
-    }
     return (
-      <div class="cont">
+      <div class="flex flex-col overflow-y-auto md:flex-row">
         <stencil-route-title pageTitle={appConfig.pageTitle.register} />
-        <div class="app-form register-in">
-          <h2>Time to feel like home</h2>
-          {this.registerError && <app-flash-message>{this.registerError}</app-flash-message>}
-          <form onSubmit={e => this.handleRegister(e)} novalidate>
-            <label>
-              <span>Name</span>
-              <input
-                type="text"
-                name="name"
-                value={this.formControls.name.value}
-                onInput={(ev: any) => this.changeFormValue("name", ev.target.value)}
-              />
-              {
-                (!this.formControls.name.isValid &&
-                  this.submitted === true) &&
-                <span class="text-danger">Please enter your name</span>
-              }
-            </label>
-            <label>
-              <span>Email</span>
-              <input
-                type="email"
-                name="email"
-                value={this.formControls.email.value}
-                onInput={(ev: any) => this.changeFormValue("email", ev.target.value)}
-              />
-              {
-                (!this.formControls.email.isValid &&
-                  this.submitted === true) &&
-                <span class="text-danger">Please enter your email</span>
-              }
-            </label>
-            <label>
-              <span>Password</span>
-              <input
-                type="password"
-                name="password"
-                value={this.formControls.password.value}
-                onInput={(ev: any) => this.changeFormValue("password", ev.target.value)}
-              />
-              {
-                (!this.formControls.password.isValid &&
-                  this.submitted === true) &&
-                <span class="text-danger">Please enter your password</span>
-              }
-            </label>
-            <button type="submit" class="submit-btn" disabled={this.formLoader}>{this.formLoader ? appConfig.loadingBtnTxt : 'Register'}</button>
-          </form>
+        <div class="h-32 md:h-auto md:w-1/2">
+          <img
+            aria-hidden="true"
+            class="object-cover w-full h-full dark:hidden"
+            src={getAssetPath('./assets/create-account-office.jpeg')}
+            alt="Office"
+          />
+          <img
+            aria-hidden="true"
+            class="hidden object-cover w-full h-full dark:block"
+            src={getAssetPath('./assets/create-account-office-dark.jpeg')}
+            alt="Office"
+          />
         </div>
-        <LoginRegisterSidebar type="login"></LoginRegisterSidebar>
+        <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+          <div class="w-full">
+            <form onSubmit={e => this.handleRegister(e)} novalidate>
+              <h1
+                class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200"
+              >
+                {appConfig.pageTitle.register}
+              </h1>
+              <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Name</span>
+                <input
+                  class={`${inputClass} ${(!this.formControls.name.isValid && this.submitted === true) ? errorClass : ''}`}
+                  placeholder="John Dev"
+                  type="text"
+                  name="name"
+                  min={3}
+                  max={50}
+                  value={this.formControls.name.value}
+                  onInput={(ev: any) => this.changeFormValue("name", ev.target.value)}
+                  required={true}
+                />
+                {
+                  (!this.formControls.email.isValid && this.submitted === true) &&
+                  <span class="text-xs text-red-600 dark:text-red-400">
+                    Please enter your email
+                </span>
+                }
+              </label>
+              <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Email</span>
+                <input
+                  class={`${inputClass} ${(!this.formControls.email.isValid && this.submitted === true) ? errorClass : ''}`}
+                  placeholder="name@email.com"
+                  type="email"
+                  name="email"
+                  max={60}
+                  value={this.formControls.email.value}
+                  onInput={(ev: any) => this.changeFormValue("email", ev.target.value)}
+                />
+                {
+                  (!this.formControls.email.isValid && this.submitted === true) &&
+                  <span class="text-xs text-red-600 dark:text-red-400">
+                    Please enter your email
+                </span>
+                }
+              </label>
+              <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Password</span>
+                <input
+                  class={`${inputClass} ${(!this.formControls.password.isValid && this.submitted === true) ? errorClass : ''}`}
+                  placeholder="***************"
+                  type="password"
+                  name="password"
+                  max={18}
+                  value={this.formControls.password.value}
+                  onInput={(ev: any) => this.changeFormValue("password", ev.target.value)}
+                  required={true}
+                />
+                {
+                  (!this.formControls.password.isValid && this.submitted === true) &&
+                  <span class="text-xs text-red-600 dark:text-red-400">
+                    Please enter your password
+                </span>
+                }
+              </label>
+              <div class="flex mt-6 text-sm">
+                <label class="flex items-center dark:text-gray-400">
+                  <input
+                    type="checkbox"
+                    class=
+                    {
+                      `
+                      text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray
+                      ${(!this.formControls.terms_agree.isValid && this.submitted === true) ? errorClass : ''}
+                      `
+                    }
+                    checked={this.formControls.terms_agree.value}
+                    onChange={() => this.changeFormValue("terms_agree", !this.formControls.terms_agree.value)}
+                    required={true}
+                  />
+                  <span class="ml-2">
+                    I agree to the &nbsp;
+                  <stencil-route-link url={appUrl.pages.privacyPolicy}>
+                      <span class="underline">privacy policy</span>
+                    </stencil-route-link>
+                  </span>
+                </label>
+              </div>
+              {
+                (!this.formControls.terms_agree.isValid && this.submitted === true) &&
+                <span class="text-xs text-red-600 dark:text-red-400 w-full">
+                  Please agree to terms & condition
+                    </span>
+              }
+              {this.registerError && <app-flash-message type="error">{this.registerError}</app-flash-message>}
+              <button
+                class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                type="submit"
+                disabled={this.formLoader}>
+                {this.formLoader ? appConfig.loadingBtnTxt : appConfig.pageTitle.register}
+              </button>
+            </form>
+            <LoginRegisterSidebar type="register"></LoginRegisterSidebar>
+          </div>
+        </div>
       </div>
     );
   }

@@ -5,35 +5,7 @@
  * @component AppRoot
  */
 
-import { Component, h, Prop } from '@stencil/core';
-import { RouterHistory } from '@stencil/router';
-import { AppState } from "../../store/app.store";
-import { AuthService } from "../../services/auth.service";
-import { appConfig } from '../../config/config';
-
-/**
- * Handle private routes
- * Routes that can't be accessed until user logs in
- * Functional component
- * @param   {string} component name
- * @param   {object} props name
- *
- * @returns {Object} 
- */
-const PrivateRoute = ({ component, ...props }: { [key: string]: any }) => {
-  const Component = component;
-
-  return (
-    <stencil-route {...props} routeRender={
-      (props: { [key: string]: any }) => {
-        if (AppState.isAuthenticated) {
-          return <Component {...props} {...props.componentProps}></Component>;
-        }
-        return <stencil-router-redirect url="/login"></stencil-router-redirect>
-      }
-    } />
-  );
-}
+import { Component, h } from '@stencil/core';
 
 @Component({
   tag: 'app-root',
@@ -41,26 +13,6 @@ const PrivateRoute = ({ component, ...props }: { [key: string]: any }) => {
 
 })
 export class AppRoot {
-  /**
-  * AuthService instance.
-  * @name authObj
-  * @type {Object}
-  */
-  private authObj = AuthService;
-
-  /**
-  * history instance.
-  */
-  @Prop() history: RouterHistory;
-
-  /**
-  * handle logout
-  *
-  * @returns {void}
-  */
-  async logout() {
-    await this.authObj.logOut();
-  }
 
   /**
   * Render component <app-root>
@@ -68,13 +20,10 @@ export class AppRoot {
   * @returns {void}
   */
   render() {
-    if (AppState.appInit === true) {
-      return (<div>Loading...</div>);
-    }
-    if (AppState.appInitError != '') {
-      return (<app-flash-message closable={false}>{AppState.appInitError}</app-flash-message>);
-    }
-    const titleSuffix = ` | ${appConfig.pageTitlePrefix}`
+    return (
+      <app-layout></app-layout>
+    );
+    /*const titleSuffix = ` | ${appConfig.pageTitlePrefix}`
     return (
       <div>
         {
@@ -107,6 +56,6 @@ export class AppRoot {
           </stencil-router>
         </main>
       </div>
-    );
+    );*/
   }
 }

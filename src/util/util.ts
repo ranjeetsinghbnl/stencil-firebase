@@ -1,3 +1,9 @@
+/**
+ *  @fileOverview Write all the utility functions
+ *
+ *  @author  Ranjeet Singh
+ */
+
 import { IFirebaseError, IErrorRes } from "../interface/interface";
 
 const parseFirebaseErrors = (frbError: IFirebaseError): IErrorRes => {
@@ -32,6 +38,9 @@ const checkEmpty = (value: any) => {
     return false;
   }
 }
+const checkTrue = (value) => {
+  return value === true;
+}
 const getFormValidations = (key, values = {}) => {
   const validations = {
     login: {
@@ -61,6 +70,11 @@ const getFormValidations = (key, values = {}) => {
         value: values['password'] ? values['password'] : null,
         validate: checkEmpty,
         isValid: values['password'] ? true : false
+      },
+      terms_agree: {
+        value: values['terms_agree'] ? true : false,
+        validate: checkTrue,
+        isValid: checkTrue(values['terms_agree'])
       }
     },
     updateProfile: {
@@ -73,9 +87,16 @@ const getFormValidations = (key, values = {}) => {
   };
   return validations[key] ? validations[key] : {}
 }
-
+const inputClass = 'block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input';
+const errorClass = 'border-red-600 focus:border-red-400 focus:shadow-outline-red';
+const checkActiveUrl = (url) => {
+  return location.pathname == url;
+}
 export {
   parseFirebaseErrors,
   appMsg,
-  getFormValidations
+  getFormValidations,
+  inputClass,
+  errorClass,
+  checkActiveUrl
 }

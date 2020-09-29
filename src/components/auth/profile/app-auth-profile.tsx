@@ -101,7 +101,7 @@ export class AppAuthProfile {
         <stencil-route-title pageTitle={appConfig.pageTitle.profile} />
         <div class="app-form register-in">
           <h2>Update Profile</h2>
-          {this.formError && <app-flash-message>{this.formError}</app-flash-message>}
+          {this.formError && <app-flash-message type="error">{this.formError}</app-flash-message>}
           <form onSubmit={e => this.handleProfile(e)} novalidate>
             <label>
               <span>Name</span>

@@ -1,3 +1,9 @@
+/**
+ *  @fileOverview Write all the interfaces related to the application
+ *
+ *  @author  Ranjeet Singh
+ */
+
 interface ICM {
     [key: string]: any
 }

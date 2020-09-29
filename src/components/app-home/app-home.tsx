@@ -22,7 +22,7 @@ export class AppHome {
   */
   render() {
     return (
-      <div class='app-home'>
+      <div class="container px-6 mx-auto grid">
         <stencil-route-title pageTitle={appConfig.pageTitle.dashboard} />
         <h3>Hi <span class="user-name">{AppState.user ? AppState.user.displayName : null}</span>,</h3><br />
         <h3>Welcome to the {appConfig.name} dashboard.</h3><br />
@@ -38,7 +38,7 @@ export class AppHome {
           Edit Profile
         </stencil-route-link>
         </p>
-      </div >
+      </div>
     );
   }
 }

@@ -1,14 +1,22 @@
 /* The alert message box */
 .app-alert {
   padding: 10px;
-  background-color: #f44336;
-  /* Red */
-  color: white;
   margin-bottom: 6px;
   margin-top: 6px;
-  border: 1px solid #dc3b2f;
   border-radius: 3px;
   text-align: center;
+
+  &.error {
+    background-color: #f44336;
+    border: 1px solid #dc3b2f;
+    color: white;
+  }
+
+  &.success {
+    background-color: #9ce2ad;
+    border: 1px solid #649a70;
+    color: #155724;
+  }
 
   /* The close button */
   .app-close-btn {
