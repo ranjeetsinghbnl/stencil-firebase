@@ -59,6 +59,8 @@ export namespace Components {
     }
     interface AppNotificationMenu {
     }
+    interface AppPageContainer {
+    }
     interface AppPageHome {
     }
     interface AppProfileMenu {
@@ -152,6 +154,12 @@ declare global {
         prototype: HTMLAppNotificationMenuElement;
         new (): HTMLAppNotificationMenuElement;
     };
+    interface HTMLAppPageContainerElement extends Components.AppPageContainer, HTMLStencilElement {
+    }
+    var HTMLAppPageContainerElement: {
+        prototype: HTMLAppPageContainerElement;
+        new (): HTMLAppPageContainerElement;
+    };
     interface HTMLAppPageHomeElement extends Components.AppPageHome, HTMLStencilElement {
     }
     var HTMLAppPageHomeElement: {
@@ -219,6 +227,7 @@ declare global {
         "app-layout-external": HTMLAppLayoutExternalElement;
         "app-layout-internal": HTMLAppLayoutInternalElement;
         "app-notification-menu": HTMLAppNotificationMenuElement;
+        "app-page-container": HTMLAppPageContainerElement;
         "app-page-home": HTMLAppPageHomeElement;
         "app-profile-menu": HTMLAppProfileMenuElement;
         "app-root": HTMLAppRootElement;
@@ -283,6 +292,8 @@ declare namespace LocalJSX {
     }
     interface AppNotificationMenu {
     }
+    interface AppPageContainer {
+    }
     interface AppPageHome {
     }
     interface AppProfileMenu {
@@ -315,6 +326,7 @@ declare namespace LocalJSX {
         "app-layout-external": AppLayoutExternal;
         "app-layout-internal": AppLayoutInternal;
         "app-notification-menu": AppNotificationMenu;
+        "app-page-container": AppPageContainer;
         "app-page-home": AppPageHome;
         "app-profile-menu": AppProfileMenu;
         "app-root": AppRoot;
@@ -342,6 +354,7 @@ declare module "@stencil/core" {
             "app-layout-external": LocalJSX.AppLayoutExternal & JSXBase.HTMLAttributes<HTMLAppLayoutExternalElement>;
             "app-layout-internal": LocalJSX.AppLayoutInternal & JSXBase.HTMLAttributes<HTMLAppLayoutInternalElement>;
             "app-notification-menu": LocalJSX.AppNotificationMenu & JSXBase.HTMLAttributes<HTMLAppNotificationMenuElement>;
+            "app-page-container": LocalJSX.AppPageContainer & JSXBase.HTMLAttributes<HTMLAppPageContainerElement>;
             "app-page-home": LocalJSX.AppPageHome & JSXBase.HTMLAttributes<HTMLAppPageHomeElement>;
             "app-profile-menu": LocalJSX.AppProfileMenu & JSXBase.HTMLAttributes<HTMLAppProfileMenuElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;

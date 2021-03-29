@@ -1,3 +1,17 @@
 :host {
   display: block;
 }
+
+.dashboard-menu-links {
+  a {
+    span.active-menu-tag {
+      display: none;
+    }
+  }
+
+  a.link-active {
+    span.active-menu-tag {
+      display: block;
+    }
+  }
+}

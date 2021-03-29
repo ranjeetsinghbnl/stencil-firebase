@@ -2,7 +2,7 @@
   "name": "stencil-firebase",
   "private": false,
   "version": "0.0.2",
-  "description": "Welcome to the Stencil + Firebase starter App. You can use this starter to build entire apps all with web components using Stencil + Firebase",
+  "description": "Welcome to the Stencil + Firebase + tailwind-css starter App. You can use this starter to build entire apps all with web components using Stencil + Firebase + tailwind-css",
   "repository": {
     "type": "git",
     "url": "https://github.com/ranjeetsinghbnl/stencil-firebase.git"
@@ -51,6 +51,9 @@
     "stencil",
     "firebase",
     "firebase stencil",
-    "stencil store"
+    "stencil store",
+    "stencil.js",
+    "tailwind",
+    "admin panel"
   ]
 }
